@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHL Stats</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-4">Upcoming Match</h1>
+        <ul class="list-disc pl-4">
+            <p>{{ upcoming_matches.date }}</p>
+            {% for match in upcoming_matches %}
+                <li class="mb-2">
+                    <p class="text-lg">{{ match.homeTeam }} <span class="font-bold">vs</span> {{ match.awayTeam }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Top Scorer (Last 3 Games)</h2>
+        <div class="flex items-center border border-gray-300 rounded px-4 py-2 mb-4">
+            <div class="text-lg mr-4">Players:</div>
+            <ul class="list-disc pl-4">
+                {% for player in players_best_scorers_info %}
+                    <li class="mb-2"><span> {{ player.FirstName }} {{ player.LastName }} </span> ({{ player.Team }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Top Goalie (Last 3 Games)</h2>
+        <div class="flex items-center border border-gray-300 rounded px-4 py-2 mb-4">
+            <div class="text-lg mr-4">Players:</div>
+            <ul class="list-disc pl-4">
+                {% for player in players_infos_who_scored %}
+                    <li class="mb-2"><span> {{ player.FirstName }} {{ player.LastName }} </span> ({{ player.Team }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
